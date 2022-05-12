@@ -1,9 +1,16 @@
-## Get auth0 access token
+## Auth0 access token
 ```
 $ go run main.go
 ```
 
-### Get start
+### 設定
+
+```
+$ cp env_sample .env
+```
+※.envはauth0のものを + 既存ユーザーのusername/passwordを設定
+
+### コンテナで実行
 ```
 $ docker build -t go-auth0:latest .
 
@@ -23,10 +30,18 @@ $ ./scripts/run.sh
 $ ./scripts/build_run.sh
 ```
 
-## env
+## 環境
 ```
 $ go version
 go version go1.17 linux/amd64
 ```
 
 ※docker imageはgo version1.18
+
+## 詳細・注意事項
+
+- 設定項目の環境変数を必ず設定してください
+- default directory/audience等の設定は必要です
+- auth0 databaseにユーザーが保存されている状態じゃないと動きません
+- auth0 API referenceにある通り、sigle page applicationとnative applicationでは動きません
+- regular web applicationでもadvanced settingでgrant typeにチェックがついてないと動きません
